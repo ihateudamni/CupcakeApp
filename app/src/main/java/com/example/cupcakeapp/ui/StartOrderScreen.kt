@@ -19,6 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.res.stringResource
+import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 
 @Composable
 fun StartOrderScreen(
@@ -69,6 +73,20 @@ fun StartOrderScreen(
             }
 
         }
+    }
+}
+
+@Composable
+fun SelectQuantityButton(
+    @StringRes labelResourceId: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.widthIn(min = 250.dp)
+    ) {
+        Text(stringResource(labelResourceId))
     }
 }
 
