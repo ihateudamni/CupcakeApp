@@ -1,32 +1,36 @@
 package com.example.cupcakeapp.ui
 
+import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.cupcakeapp.ui.theme.CupcakeAppTheme
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.dimensionResource
-import com.example.cupcakeapp.R
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.res.stringResource
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.cupcakeapp.R
 import com.example.cupcakeapp.data.DataSource
+import com.example.cupcakeapp.ui.theme.CupcakeAppTheme
+
 
 @Composable
 fun StartOrderScreen(
+    quantityOptions: List<Pair<Int, Int>>,
+    onNextButtonClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -67,8 +71,13 @@ fun StartOrderScreen(
                         dimensionResource(R.dimen.padding_medium)
                     )
                 ) {
-                    // Aquí se colocarán más elementos
-                }
+                    quantityOptions.forEach { item ->
+                        SelectQuantityButton(
+                            labelResourceId = item.first,
+                            onClick = { onNextButtonClicked(item.second) },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }                }
 
 
             }
@@ -95,6 +104,12 @@ fun SelectQuantityButton(
 @Composable
 fun StartOrderPreview() {
     CupcakeAppTheme {
-        StartOrderScreen()
+        StartOrderScreen(
+            quantityOptions = DataSource.quantityOptions,
+            onNextButtonClicked = {},
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(dimensionResource(R.dimen.padding_medium))
+        )
     }
 }
