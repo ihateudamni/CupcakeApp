@@ -22,7 +22,6 @@ object DataSource {
         Pair(R.string.twelve_cupcakes, 12)
     )
 
-    // 👉 Nueva función para generar las fechas disponibles de recogida
     fun pickupOptions(context: Context): List<String> {
         val options = mutableListOf<String>()
         val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())

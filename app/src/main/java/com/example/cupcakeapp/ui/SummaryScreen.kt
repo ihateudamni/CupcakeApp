@@ -43,16 +43,14 @@ fun SummaryScreen(
             .padding(dimensionResource(R.dimen.padding_medium)),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Información del pedido
         Column(modifier = Modifier.fillMaxWidth()) {
             Text("Resumen del pedido", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
             Text(orderSummary, style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
-            Text("Subtotal $24.00", fontSize = 18.sp, fontWeight = FontWeight.Bold) // aquí luego puedes calcular el precio real
+            Text("Subtotal $24.00", fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
 
-        // Botones
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
